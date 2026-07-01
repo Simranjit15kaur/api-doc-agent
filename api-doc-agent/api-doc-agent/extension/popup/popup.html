@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 300px;
+      padding: 20px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+    }
+
+    .popup-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .popup-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .popup-title .icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #58a6ff, #bc8cff);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .popup-title h1 {
+      font-size: 15px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #58a6ff, #bc8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .settings-btn {
+      background: none;
+      border: none;
+      color: #8b949e;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 4px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .settings-btn:hover {
+      color: #e6edf3;
+      background: #21262d;
+    }
+
+    .analyze-btn {
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #58a6ff, #bc8cff);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .analyze-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(88, 166, 255, 0.35);
+    }
+
+    .analyze-btn:active {
+      transform: translateY(0);
+    }
+
+    .analyze-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .analyze-btn .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-right: 8px;
+    }
+
+    .analyze-btn.loading .spinner {
+      display: inline-block;
+    }
+
+    .analyze-btn.loading .btn-text {
+      opacity: 0.8;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #status {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #8b949e;
+      text-align: center;
+      min-height: 18px;
+      transition: all 0.3s ease;
+    }
+
+    #status.error {
+      color: #f85149;
+    }
+
+    #status.info {
+      color: #58a6ff;
+    }
+
+    .divider {
+      height: 1px;
+      background: #30363d;
+      margin: 16px 0;
+    }
+
+    .page-info {
+      font-size: 11px;
+      color: #484f58;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-header">
+    <div class="popup-title">
+      <div class="icon">🔌</div>
+      <h1>API Doc Agent</h1>
+    </div>
+    <button class="settings-btn" id="settingsBtn" title="Settings">⚙</button>
+  </div>
+
+  <button class="analyze-btn" id="analyzeBtn">
+    <span class="spinner"></span>
+    <span class="btn-text">Analyse this page</span>
+  </button>
+
+  <div id="status"></div>
+
+  <div class="divider"></div>
+  <div class="page-info" id="pageInfo">Ready</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
